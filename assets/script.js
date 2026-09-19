@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Submitting...';
+        submitBtn.textContent = 'Ana aikawa...';
       }
 
       const savedApplications = JSON.parse(localStorage.getItem('yahyaAidEntries') || '[]');
@@ -42,15 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         if (statusEl) {
           statusEl.textContent = formType === 'application'
-            ? `Application submitted successfully. Your reference is ${entry.id}.`
-            : 'Your message has been sent successfully.';
+            ? `An yi aikace-aikace da nasara. Lambar kiɗa ce ${entry.id}.`
+            : 'An aika saƙonku da nasara.';
         }
 
         form.reset();
 
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.textContent = formType === 'application' ? 'Submit Application' : 'Send Message';
+          submitBtn.textContent = formType === 'application' ? 'Aikace Aikace' : 'Aika Saƙo';
         }
       }, 500);
     });
