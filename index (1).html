@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ha">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shirin Tallafin Mata Na Kasa</title>
+    <style>
+        :root {
+            --primary: #d81b60;
+            --primary-light: #f48fb1;
+            --dark: #333;
+            --light: #fff;
+            --gray: #f9f9f9;
+        }
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #fce4ec;
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 20px 10px;
+        }
+        .container {
+            max-width: 600px;
+            background: var(--light);
+            margin: 0 auto;
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        .header h1 {
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .header p {
+            font-size: 14px;
+            color: #666;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        input[type="text"], input[type="tel"], select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        input[type="text"]:focus, input[type="tel"]:focus, select:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        .gift-section {
+            background: var(--gray);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            margin-top: 25px;
+        }
+        .gift-section h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .gift-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .gift-card {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            background: white;
+            transition: 0.2s;
+        }
+        .gift-card input {
+            display: none;
+        }
+        .gift-card:hover {
+            border-color: var(--primary-light);
+        }
+        .gift-card.selected {
+            border-color: var(--primary);
+            background-color: #fdf2f4;
+        }
+        .gift-icon {
+            font-size: 30px;
+            margin-bottom: 5px;
+        }
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: 0.3s;
+        }
+        .btn-submit:hover {
+            background: #b71c1c;
+        }
+        /* Modal Style */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            display: none;
+            padding: 15px;
+        }
+        .modal-box {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        .modal-box h2 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+        .modal-box p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #444;
+        }
+        .link-pointer {
+            display: inline-block;
+            background: #fff3e0;
+            border: 2px dashed #ff9800;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-decoration: none;
+            color: #e65100;
+            font-weight: bold;
+            font-size: 18px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        .arrow-indicator {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Tsarin Tallafin Mata Na Kasa</h1>
+        <p>Cika wannan fom cikin sauki domin cin gajiyar tallafin kayan sana'a da na gida.</p>
+    </div>
+
+    <form id="subsForm" onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+            <label for="fullname">Cikakken Suna:</label>
+            <input type="text" id="fullname" required placeholder="Sanya sunanki na gaskiya">
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Lambar Waya:</label>
+            <input type="tel" id="phone" required placeholder="Misali: 08012345678">
+        </div>
+
+        <div class="form-group">
+            <label for="state">Jiha:</label>
+            <input type="text" id="state" required placeholder="Sanya jihar da kuke zaune">
+        </div>
+
+        <div class="gift-section">
+            <h3>Zabi Kayan Tallafin Da Kike Bukata (Zabi Daya):</h3>
+            <div class="gift-options">
+                <div class="gift-card" onclick="selectGift(this, 'Firiji (Refrigerator)')">
+                    <div class="gift-icon">❄️</div>
+                    <div>Firiji</div>
+                </div>
+                <div class="gift-card" onclick="selectGift(this, 'Kayan Talabijin (TV)')">
+                    <div class="gift-icon">📺</div>
+                    <div>Kabido / TV</div>
+                </div>
+                <div class="gift-card" onclick="selectGift(this, 'Injin dinki (Sewing Machine)')">
+                    <div class="gift-icon">🧵</div>
+                    <div>Injin Dinki</div>
+                </div>
+                <div class="gift-card" onclick="selectGift(this, 'Kayan Abinci (Foodstuff)')">
+                    <div class="gift-icon">🌾</div>
+                    <div>Kayan Abinci</div>
+                </div>
+            </div>
+            <input type="hidden" id="selectedGift" required>
+        </div>
+
+        <button type="submit" class="btn-submit">TURA BAYANAI (SUBMIT)</button>
+    </form>
+</div>
+
+<!-- Notification Modal -->
+<div class="modal-overlay" id="notificationModal">
+    <div class="modal-box">
+        <h2>An Karbi Bayananki Sifiri!</h2>
+        <p>Saurara daki daya kafin kammalawa! Wannan doka ce mai mahimmanci: Dole ne ki bude wannan hanyar (link) da ke kasa na tsawon <strong>sakanni 10 (10 seconds)</strong> kafin aikinki ya kammala gaba daya.</p>
+        
+        <div class="arrow-indicator">👇 KAI TSAYE DANNA NAN NAN 👇</div>
+        <a href="https://omg10.com/4/11245408" target="_blank" class="link-pointer" onclick="markLinkClicked()">
+            👉 DANNA WANNAN LINK DIN ANAN 👈
+        </a>
+        
+        <p style="font-size: 13px; color: #ff3d00; margin-top: 15px; font-weight: bold;">
+            Idan baki bude link din kika jira sakanni 10 ba, ba za a tura sunanki cikin jerin sunayen wadanda zasu amfana ba. Idan kika gama, sai kiyi BACK don dawowa shafin nan.
+        </p>
+    </div>
+</div>
+
+<script>
+    function selectGift(element, giftName) {
+        const cards = document.querySelectorAll('.gift-card');
+        cards.forEach(card => card.classList.remove('selected'));
+        element.classList.add('selected');
+        document.getElementById('selectedGift').value = giftName;
+    }
+
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        const gift = document.getElementById('selectedGift').value;
+        if (!gift) {
+            alert("Da fatan zaɓi kayan tallafi guda ɗaya kafin ku tura!");
+            return;
+        }
+        document.getElementById('notificationModal').style.display = 'flex';
+    }
+
+    function markLinkClicked() {
+        console.log("An danna link din.");
+    }
+</script>
+
+</body>
+</html>
