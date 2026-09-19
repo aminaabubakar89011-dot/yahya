@@ -35,7 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
 
-    const close = () => modal.remove();
+    const close = () => {
+      modal.remove();
+      onContinue(false);
+    };
+
     modal.querySelector('.rules-modal__close').addEventListener('click', close);
     modal.addEventListener('click', (event) => {
       if (event.target === modal) close();
@@ -46,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const countdown = modal.querySelector('.rules-modal__countdown');
       continueButton.disabled = true;
 
-      // Open the destination clearly in a new tab, while keeping this submission page open.
       window.open(redirectLink, '_blank', 'noopener,noreferrer');
 
       let remaining = 5;
@@ -57,11 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
           countdown.textContent = `Ana kammalawa cikin ${remaining}...`;
           return;
         }
+
         clearInterval(timer);
         countdown.textContent = 'Ana aika bayananka...';
         setTimeout(() => {
-          close();
-          onContinue();
+          modal.remove();
+          onContinue(true);
         }, 400);
       }, 1000);
     });
@@ -85,7 +89,15 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.textContent = 'Ana shirya...';
       }
 
-      createRulesModal(form, () => {
+      createRulesModal(form, (completed) => {
+        if (!completed) {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = formType === 'application' ? 'Aikace Aikace' : 'Aika Saƙo';
+          }
+          return;
+        }
+
         let savedEntries = [];
         try {
           savedEntries = JSON.parse(localStorage.getItem('yahyaAidEntries') || '[]');
@@ -106,8 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (statusEl) {
           statusEl.textContent = formType === 'application'
-            ? 'An aika bayananku cikin nasara.'
-            : 'An aika saƙonku cikin nasara.';
+            ? 'An karɓi bayananku cikin nasara. Za mu tuntube ku ta lambar wayar da kuka bayar.'
+            : 'An karɓi saƙonku cikin nasara. Za mu tuntube ku idan ya cancanta.';
           statusEl.classList.add('is-visible');
         }
 
