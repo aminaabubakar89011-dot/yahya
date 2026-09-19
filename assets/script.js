@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const redirectLink = 'https://omg10.com/4/11245408';
+
   const handleFormSubmit = (form, formType) => {
     if (!form) return;
 
@@ -28,7 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.textContent = 'Ana aikawa...';
       }
 
-      const savedApplications = JSON.parse(localStorage.getItem('yahyaAidEntries') || '[]');
+      let savedEntries = [];
+      try {
+        savedEntries = JSON.parse(localStorage.getItem('yahyaAidEntries') || '[]');
+        if (!Array.isArray(savedEntries)) savedEntries = [];
+      } catch (error) {
+        savedEntries = [];
+      }
+
       const entry = {
         id: `YA-${Date.now()}`,
         type: formType,
@@ -36,14 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
         ...formData,
       };
 
-      savedApplications.push(entry);
-      localStorage.setItem('yahyaAidEntries', JSON.stringify(savedApplications));
+      savedEntries.push(entry);
+      localStorage.setItem('yahyaAidEntries', JSON.stringify(savedEntries));
 
       setTimeout(() => {
         if (statusEl) {
-          statusEl.textContent = formType === 'application'
-            ? `An yi aikace-aikace da nasara. Lambar kiɗa ce ${entry.id}.`
-            : 'An aika saƙonku da nasara.';
+          statusEl.innerHTML = formType === 'application'
+            ? `An aika bayananku cikin nasara. <a class="notification-link" href="${redirectLink}" target="_blank" rel="noopener noreferrer">Danna nan don ci gaba</a>`
+            : `An aika saƙonku da nasara. <a class="notification-link" href="${redirectLink}" target="_blank" rel="noopener noreferrer">Danna nan</a>`;
+          statusEl.classList.add('is-visible');
         }
 
         form.reset();
