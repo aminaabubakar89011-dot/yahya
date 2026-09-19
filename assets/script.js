@@ -117,10 +117,11 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('yahyaAidEntries', JSON.stringify(savedEntries));
 
         if (statusEl) {
-          statusEl.textContent = formType === 'application'
-            ? 'An karɓi bayananku cikin nasara. Za mu tuntube ku ta lambar wayar da kuka bayar.'
+          statusEl.className = 'form-status is-visible success-notification';
+          statusEl.setAttribute('role', 'alert');
+          statusEl.innerHTML = formType === 'application'
+            ? '<strong>An kammala submit ɗinku cikin nasara.</strong><br>Za a yi screening ranar 24. Don Allah ku adana wannan website ɗin domin kammala komai.'
             : 'An karɓi saƙonku cikin nasara. Za mu tuntube ku idan ya cancanta.';
-          statusEl.classList.add('is-visible');
         }
 
         form.reset();
