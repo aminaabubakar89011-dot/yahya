@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apply | Yahya Aid</title>
+  <meta name="description" content="Apply for support, grants, or household assistance through Yahya Aid." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">Y</span>
+        <span>Yahya Aid</span>
+      </a>
+
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a class="active" href="apply.html">Apply</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero small-hero">
+      <div class="container narrow">
+        <span class="eyebrow">Application</span>
+        <h1>Request assistance and support</h1>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container form-layout">
+        <div class="form-copy">
+          <h2>Tell us about your needs</h2>
+          <p>
+            Please provide your details honestly so we can determine the right support category for your household or business.
+          </p>
+          <ul class="check-list">
+            <li>Limited to eligible households and women-led support applications</li>
+            <li>Application review happens within a few working days</li>
+            <li>Personal information is handled with care and confidentiality</li>
+          </ul>
+        </div>
+
+        <form class="application-form" data-form="application">
+          <div class="field-row two-col-fields">
+            <div class="field">
+              <label for="fullName">Full name</label>
+              <input id="fullName" name="fullName" type="text" placeholder="Enter your full name" required />
+            </div>
+            <div class="field">
+              <label for="phone">Phone number</label>
+              <input id="phone" name="phone" type="tel" placeholder="e.g. +234 800 000 0000" required />
+            </div>
+          </div>
+
+          <div class="field-row two-col-fields">
+            <div class="field">
+              <label for="state">State</label>
+              <input id="state" name="state" type="text" placeholder="Your state" required />
+            </div>
+            <div class="field">
+              <label for="occupation">Occupation</label>
+              <input id="occupation" name="occupation" type="text" placeholder="Your role or work" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="supportType">Type of support needed</label>
+            <select id="supportType" name="supportType" required>
+              <option value="">Select a support type</option>
+              <option>Home essentials</option>
+              <option>Food and family relief</option>
+              <option>Business support</option>
+              <option>School materials</option>
+              <option>Emergency assistance</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="householdSize">Household size</label>
+            <input id="householdSize" name="householdSize" type="number" min="1" placeholder="Number of family members" required />
+          </div>
+
+          <div class="field">
+            <label for="details">Describe your need</label>
+            <textarea id="details" name="details" rows="5" placeholder="Tell us about your situation and what kind of help you need." required></textarea>
+          </div>
+
+          <div class="checkbox-wrap">
+            <input id="consent" name="consent" type="checkbox" required />
+            <label for="consent">I confirm the information provided is accurate and I consent to follow-up review.</label>
+          </div>
+
+          <button type="submit" class="btn btn-primary submit-btn">Submit Application</button>
+          <p class="form-status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="index.html">
+          <span class="brand-mark">Y</span>
+          <span>Yahya Aid</span>
+        </a>
+        <p>Supporting resilient households with practical and compassionate aid.</p>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@yahyaaid.org">hello@yahyaaid.org</a></li>
+          <li><a href="tel:+2348000000000">+234 800 000 0000</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">© <span id="year"></span> Yahya Aid. All rights reserved.</div>
+  </footer>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>

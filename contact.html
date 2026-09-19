@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Yahya Aid</title>
+  <meta name="description" content="Contact Yahya Aid for support, application questions, and community assistance." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">Y</span>
+        <span>Yahya Aid</span>
+      </a>
+
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="apply.html">Apply</a>
+        <a class="active" href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero small-hero">
+      <div class="container narrow">
+        <span class="eyebrow">Contact</span>
+        <h1>We’re here to help</h1>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container contact-layout">
+        <div class="contact-panel">
+          <h2>Get in touch</h2>
+          <ul class="contact-list">
+            <li><strong>Email:</strong> <a href="mailto:hello@yahyaaid.org">hello@yahyaaid.org</a></li>
+            <li><strong>Phone:</strong> <a href="tel:+2348000000000">+234 800 000 0000</a></li>
+            <li><strong>Office Hours:</strong> Mon–Sat, 9:00 AM – 5:00 PM</li>
+            <li><strong>Location:</strong> Community support center, Lagos</li>
+          </ul>
+        </div>
+
+        <form class="application-form" data-form="contact">
+          <div class="field">
+            <label for="contactName">Full name</label>
+            <input id="contactName" name="contactName" type="text" placeholder="Your full name" required />
+          </div>
+
+          <div class="field">
+            <label for="contactEmail">Email address</label>
+            <input id="contactEmail" name="contactEmail" type="email" placeholder="you@example.com" required />
+          </div>
+
+          <div class="field">
+            <label for="messageSubject">Subject</label>
+            <input id="messageSubject" name="messageSubject" type="text" placeholder="How can we help?" required />
+          </div>
+
+          <div class="field">
+            <label for="messageBody">Message</label>
+            <textarea id="messageBody" name="messageBody" rows="5" placeholder="Write your message here..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
+          <p class="form-status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="index.html">
+          <span class="brand-mark">Y</span>
+          <span>Yahya Aid</span>
+        </a>
+        <p>Supporting resilient households with practical and compassionate aid.</p>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="apply.html">Apply</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@yahyaaid.org">hello@yahyaaid.org</a></li>
+          <li><a href="tel:+2348000000000">+234 800 000 0000</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">© <span id="year"></span> Yahya Aid. All rights reserved.</div>
+  </footer>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>
