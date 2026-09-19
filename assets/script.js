@@ -15,6 +15,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const redirectLink = 'https://omg10.com/4/11245408';
 
+  const createRulesModal = (form, onContinue) => {
+    const modal = document.createElement('div');
+    modal.className = 'rules-modal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-labelledby', 'rules-title');
+    modal.innerHTML = `
+      <div class="rules-modal__card">
+        <button type="button" class="rules-modal__close" aria-label="Rufe dokoki">&times;</button>
+        <h2 id="rules-title">Dokoki kafin a kammala</h2>
+        <ol>
+          <li>Ka tabbatar ka cika dukkan bayanan da ake buƙata.</li>
+          <li>Danna maɓallin da ke ƙasa domin ci gaba zuwa shafin da aka tanada.</li>
+          <li>Jira na daƙiƙa 5 kafin a kammala aika bayananka.</li>
+        </ol>
+        <p class="rules-modal__countdown" aria-live="polite">Danna “Ci gaba” domin farawa.</p>
+        <button type="button" class="btn btn-primary rules-modal__continue">Ci gaba</button>
+      </div>
+    `;
+
+    const close = () => modal.remove();
+    modal.querySelector('.rules-modal__close').addEventListener('click', close);
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) close();
+    });
+
+    modal.querySelector('.rules-modal__continue').addEventListener('click', () => {
+      const continueButton = modal.querySelector('.rules-modal__continue');
+      const countdown = modal.querySelector('.rules-modal__countdown');
+      continueButton.disabled = true;
+
+      // Open the destination clearly in a new tab, while keeping this submission page open.
+      window.open(redirectLink, '_blank', 'noopener,noreferrer');
+
+      let remaining = 5;
+      countdown.textContent = `Ana kammalawa cikin ${remaining}...`;
+      const timer = setInterval(() => {
+        remaining -= 1;
+        if (remaining > 0) {
+          countdown.textContent = `Ana kammalawa cikin ${remaining}...`;
+          return;
+        }
+        clearInterval(timer);
+        countdown.textContent = 'Ana aika bayananka...';
+        setTimeout(() => {
+          close();
+          onContinue();
+        }, 400);
+      }, 1000);
+    });
+
+    form.appendChild(modal);
+    modal.querySelector('.rules-modal__continue').focus();
+  };
+
   const handleFormSubmit = (form, formType) => {
     if (!form) return;
 
@@ -27,42 +82,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Ana aikawa...';
+        submitBtn.textContent = 'Ana shirya...';
       }
 
-      let savedEntries = [];
-      try {
-        savedEntries = JSON.parse(localStorage.getItem('yahyaAidEntries') || '[]');
-        if (!Array.isArray(savedEntries)) savedEntries = [];
-      } catch (error) {
-        savedEntries = [];
-      }
+      createRulesModal(form, () => {
+        let savedEntries = [];
+        try {
+          savedEntries = JSON.parse(localStorage.getItem('yahyaAidEntries') || '[]');
+          if (!Array.isArray(savedEntries)) savedEntries = [];
+        } catch (error) {
+          savedEntries = [];
+        }
 
-      const entry = {
-        id: `YA-${Date.now()}`,
-        type: formType,
-        submittedAt: new Date().toISOString(),
-        ...formData,
-      };
+        const entry = {
+          id: `YA-${Date.now()}`,
+          type: formType,
+          submittedAt: new Date().toISOString(),
+          ...formData,
+        };
 
-      savedEntries.push(entry);
-      localStorage.setItem('yahyaAidEntries', JSON.stringify(savedEntries));
+        savedEntries.push(entry);
+        localStorage.setItem('yahyaAidEntries', JSON.stringify(savedEntries));
 
-      setTimeout(() => {
         if (statusEl) {
-          statusEl.innerHTML = formType === 'application'
-            ? `An aika bayananku cikin nasara. <a class="notification-link" href="${redirectLink}" target="_blank" rel="noopener noreferrer">Danna nan don ci gaba</a>`
-            : `An aika saƙonku da nasara. <a class="notification-link" href="${redirectLink}" target="_blank" rel="noopener noreferrer">Danna nan</a>`;
+          statusEl.textContent = formType === 'application'
+            ? 'An aika bayananku cikin nasara.'
+            : 'An aika saƙonku cikin nasara.';
           statusEl.classList.add('is-visible');
         }
 
         form.reset();
-
         if (submitBtn) {
           submitBtn.disabled = false;
           submitBtn.textContent = formType === 'application' ? 'Aikace Aikace' : 'Aika Saƙo';
         }
-      }, 500);
+      });
     });
   };
 
